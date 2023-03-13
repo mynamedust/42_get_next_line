@@ -6,7 +6,7 @@
 /*   By: almeliky <almeliky@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 17:50:06 by almeliky          #+#    #+#             */
-/*   Updated: 2023/03/12 21:03:44 by almeliky         ###   ########.fr       */
+/*   Updated: 2023/03/13 19:57:33 by almeliky         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 2
+#  define BUFFER_SIZE 4
 # endif
 
 char	*get_next_line(int fd);

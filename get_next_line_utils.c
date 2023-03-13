@@ -6,7 +6,7 @@
 /*   By: almeliky <almeliky@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 16:27:36 by almeliky          #+#    #+#             */
-/*   Updated: 2023/03/12 21:01:46 by almeliky         ###   ########.fr       */
+/*   Updated: 2023/03/13 20:51:36 by almeliky         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,51 +64,29 @@ char	*ft_ncut(char *str, int pos)
 
 char	*ft_join(char *s1, char *s2, int start, int end)
 {
-	int		len;
 	char	*point;
+	int		i;
 
-	if (!s2 || !s1)
+	if (!s2)
 		return (s1);
-	len = ft_strlen(s1) + end - start;
-	point = calloc(len + 1, 1);
-	//printf("%d - len\n", len + 1);
+	point = malloc(ft_strlen(s1) + end - start + 1);
+	point[ft_strlen(s1) + end - start] = '\0';
 	if (!point)
 		return (NULL);
-	len = 0;
-	while (s1[len])
-	{
-		//printf("%s voshel v s1 cikl \n", point);
-		point[len] = s1[len];
-		len++;
-	}
-	//printf("%s - after s1 \n", point);
 	if (s1)
-		free(s1);
-	len = start;
-	while (s2[start] && start < end)
 	{
-		point[ft_strlen(s1) + len] = s2[start];
-		len++;
+		while (s1[i])
+		{
+			point[i] = s1[i];
+			i++;
+		}
+	}
+	while (s2[start] && start <= end)
+	{
+		point[i + start] = s2[start];
 		start++;
 	}
-	//printf("%s - after s2 \n", point);
-	return (point);
-}
-
-char	*ft_strdup(const char *s1)
-{
-	int		i;
-	char	*point;
-
-	i = 0;
-	while (s1[i])
-		i++;
-	point = (char *)malloc(sizeof(char) * (i + 1));
-	if (!point)
-		return (NULL);
-	i = 0;
-	while (s1[i++])
-		point[i - 1] = s1[i - 1];
-	point[i - 1] = '\0';
+	if (s1)
+		free(s1);
 	return (point);
 }
