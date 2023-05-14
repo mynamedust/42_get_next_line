@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: almeliky <almeliky@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/18 17:54:31 by almeliky          #+#    #+#             */
-/*   Updated: 2023/03/18 19:13:04 by almeliky         ###   ########.fr       */
+/*   Created: 2023/03/18 19:14:59 by almeliky          #+#    #+#             */
+/*   Updated: 2023/03/18 19:19:01 by almeliky         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*get_next_line(int fd)
 {
 	char		*line;
-	static char	*stc;
+	static char	*stc[OPEN_MAX];
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, NULL, 0))
 		return (NULL);
-	stc = ft_read(fd, stc);
-	if (!stc)
+	stc[fd] = ft_read(fd, stc[fd]);
+	if (!(stc[fd]))
 		return (NULL);
-	line = ft_newline(stc);
-	stc = ft_ncut(stc);
+	line = ft_newline(stc[fd]);
+	stc[fd] = ft_ncut(stc[fd]);
 	return (line);
 }
 
